@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script type="text/javascript" src="../js/scripts.js"></script>
+    <title>Document</title>
+</head>
+<body onload="loadBookElement()">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Bienestar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="dashboard.html">Dashboard <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="historial.html">Historial</a>
+                    </li>
+                    </ul>
+                </div>
+            </nav>
+        <div class="container body-class">
+            <h2 id="element-booked">Reserva de elemento</h2>
+            <hr> 
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <input type="hidden" id="id" value="">
+                            <h5  id="bookElementName" class="card-title"></h5>
+                            <p  id="bookElementDescription" class="card-text"></p>
+                            <img class="card-img-top" src="" id="imgelement">
+                            <p  id="bookElementCopies" class="card-text"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <button type="button" onclick="MakeBooking()" class="btn btn-success">Reservar</button>
+                    <a href="dashboard.html" class="btn btn-danger">Cancelar</a>
+                </div>
+
+                <div class="col-md-8">
+                    <label>Fecha de prestamo</label>
+                    <input class ="form-control" type="date" id="bookDate">
+
+                    <label>Dias de prestamo</label>
+                    <input class ="form-control" type="text" id="lendingDays" value="1" disabled>
+                    <br>
+                    <hr>
+                    <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">¿Donde retirar?</h5>
+                                <p  class="card-text">Este elemento puede ser retirado en el edificio de Bienestar</p>
+                            </div>
+                        </div>
+                    
+                </div>
+
+            </div>
+        </div>
+
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+</body>
+</html>

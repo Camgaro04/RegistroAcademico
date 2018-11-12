@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script type="text/javascript" src="js/scripts.js"></script>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Index</title>
+    
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">Bienvenido</h1>
+            <p class="lead">En esta applicación podrá reservar de manera rapida elementos de bienestar</p>
+        </div>
+    </div>
+
+    <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form role="form" action="html/dashboard.html" method="POST">
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-10  col-md-offset-1">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-user"></i>
+                                                    </span> 
+                                                    <input class="form-control" placeholder="Username" name="loginname" id="loginname" type="text" autofocus>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-lock"></i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="button" onclick="login()" class="btn btn-lg btn-primary btn-block" value="Sign in">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="panel-footer ">
+                            ¿No tienes una cuenta? <a href="html/registro.html" onClick="">Registrate aquí</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>
