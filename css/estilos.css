@@ -24,3 +24,41 @@
 .cards-elements{
     padding: 16px;
 }
+
+.time-line-none{
+	display: none;
+}
+
+.card-muted-white{
+	color: antiquewhite
+}
+
+.bg-orange {
+	background-color: #fc4119 !important;
+  }
+
+.bg-green {
+background-color: #d5e203 !important;
+}
+
+.bg-blue{
+	background-color: #04f0b0 !important;
+}
+
+.bg-red{
+	background-color: #fb0404 !important;
+}
+
+.div-middle-left{
+	width: 30%;
+	height: 100vh;
+	padding: 20px;
+	float: left;
+}
+
+.div-middle-right {
+	height: 100vh;
+	width: 70%;
+	padding: 20px;
+	float: right;
+  }

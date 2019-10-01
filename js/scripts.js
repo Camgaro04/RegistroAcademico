@@ -226,13 +226,18 @@ function printHistoryTable(){
 function login(){
     var email = $('#loginname').val();
     var password = $('#password').val();
-    var registeredUsers = JSON.parse(localStorage.getItem('users'));
-    for(i=0;i<registeredUsers.length;i++){
-        if(email == registeredUsers[i].email && password== registeredUsers[i].pass){
-            localStorage.setItem('currentUser',JSON.stringify(registeredUsers[i]));
-            $(location).attr('href','html/dashboard.html');
-        }
+    if(email == '123' && password== '123'){
+        //localStorage.setItem('currentUser',JSON.stringify(registeredUsers[i]));
+        $(location).attr('href','html/schedule.html');
     }
+
+
+
+   
+    /*var registeredUsers = JSON.parse(localStorage.getItem('users'));
+    for(i=0;i<registeredUsers.length;i++){
+        
+    }*/
 
     
 }   
