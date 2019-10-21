@@ -40,6 +40,8 @@ function selectedCourse(){
         $('#bannerLeft').addClass(selectedElement.color);
         $('#principalTitle').append(selectedElement.name);
         $('#creditsNumber').append(selectedElement.credits);
+        $('#navBarElement').addClass(selectedElement.color);
+        $('#progressBarElement').addClass(selectedElement.color);
 
         if(selectedElement.prerequisites.length == 0){
             $('#prerequisites').append('No Presenta prerequisitos');    
@@ -53,7 +55,9 @@ function loadInformation(){
     // listen for a click
     table.addEventListener('click', function(ev){
         var idElement = ev.target.id;
-        selectElement(idElement);
+        if(idElement !='principalTable'){
+            selectElement(idElement);
+        }
     })
 
     var informationUser = JSON.parse(localStorage.getItem('currentUser'));
