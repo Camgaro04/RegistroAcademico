@@ -37,7 +37,7 @@
 	background-color: #fc4119 !important;
   }
 
-.bg-green {
+.bg-green-lime {
 background-color: #d5e203 !important;
 }
 
@@ -47,6 +47,18 @@ background-color: #d5e203 !important;
 
 .bg-red{
 	background-color: #fb0404 !important;
+}
+
+.bg-grey{
+	background-color: #6c757d !important;
+}
+
+.bg-blue{
+	background-color: #007bff !important;
+}
+
+.bg-green{
+	background-color:#28a745 !important;
 }
 
 .div-middle-left{
