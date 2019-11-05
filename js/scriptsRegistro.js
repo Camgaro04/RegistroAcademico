@@ -1,12 +1,22 @@
 var currentItem = 'estaaa';
+var BASE_URL = ' "http://localhost:3000/api/Students/"';
+
 
 function loginRegistro(){
+
     var email = $('#loginname').val();
     var password = $('#password').val();
-    if(email == '123' && password== '123'){
-        saveUserTest();
+    var url = 'http://localhost:3000/api/Students/sign-in'
+    var data = {email:email,password:password};
+    $('#errorBody').empty();
+    $.post(url, data)
+    .done(function( data, status ) { 
+        saveOnStorage('userinformation',data);
         $(location).attr('href','html/schedule.html');
-    }
+    }).fail(function(data){    
+        $('#errorBody').append(data.responseJSON.error.message);
+        $('#exampleModal').modal('toggle');
+    });
 }
 
 function selectElement(courseSelected){
@@ -51,7 +61,7 @@ function selectedCourse(){
 
 function loadInformation(){
     var table = document.getElementById('principalTable');
-
+    var userCarrer = '';
     // listen for a click
     table.addEventListener('click', function(ev){
         var idElement = ev.target.id;
@@ -60,22 +70,34 @@ function loadInformation(){
         }
     })
 
-    var informationUser = JSON.parse(localStorage.getItem('currentUser'));
+    var userInformation = JSON.parse(localStorage.getItem('userinformation'));
+    console.log(userInformation);
+    var url = 'http://localhost:3000/api/Students/'+userInformation.student.id+'/career';
+
+    $.get(url).done(function(data,status){
+        printDashBoard(data);
+    }).fail(function(data,status){
+        console.log(data);
+    });
+}
+
+
+function printDashBoard(data){
     var principalContainer = $("#principalTable").find('tbody');
-    if(informationUser != null){
-        for(var i=0;i<informationUser.carrer.semesters.length;i++){
+    if(data != null){
+        for(var i=0;i<data.career.lines.length;i++){
             var currentRow = principalContainer.append($('<tr>'));
-            for(var j = 0; j<informationUser.carrer.semesters[i].courses.length;j++){
-                currentItem = informationUser.carrer.semesters[i].courses[j].name;
-                var currentCourse = informationUser.carrer.semesters[i].courses[j].name;
-                var divPrincipal = '<div id="'+informationUser.carrer.semesters[i].courses[j].name+'" ><div class="card text-white '+informationUser.carrer.semesters[i].courses[j].color+' mb-3" style="max-width: 18rem;" ><div class="card-header" id="'+currentCourse+'">'+currentCourse+'</div></div>'
-                    currentRow.append($('<td>')
-                        .append(divPrincipal)
-                        .append('</div>')
-                );
+            for(var j = 0; j<data.career.lines[i].courses.length;j++){
+                currentItem = data.career.lines[i].courses[j];
+                var divPrincipal = '<div id="'+currentItem.name+'" ><div class="card text-white '+data.career.lines[i].color+' mb-3" style="max-width: 18rem;" ><div class="card-header" id="'+currentItem.name+'">'+currentItem.name+'</div></div>'
+                        currentRow.append($('<td>')
+                            .append(divPrincipal)
+                            .append('</div>')
+                    );
             }
         }
     }
+    console.log(data);
 }
 
 function findSelecteCourse(selectedCourse){
@@ -92,232 +114,10 @@ function findSelecteCourse(selectedCourse){
     
 }
 
-
-function saveUserTest(){
-    var userTest = {
-        uid:"012dsdDfd",
-        firstName:"test",
-        lastName:"konrad",
-        email:"test@konradlorenz.edu.co",
-        carrer:{
-            uid:"012dsdDfd",
-            name:"Ing de sistemas",
-            currentAverage:4,
-            currentProgress:2.0,
-            semesters:[
-                {
-                    uid:"022asdfe233dss",
-                    name:"linea1",
-                    courses:[
-                        {
-                            uid:"01",
-                            firstTime: true,
-                            code:"874512",
-                            name:"Fundamentos de matematicas",
-                            credits:4,
-                            color:"bg-blue",
-                            prerequisites:[],
-                            periods:[
-                                { 
-                                    uid:"01",
-                                    firstPeriod:2.1,
-                                    secondPeriod:1.0,
-                                    finalScore:2.2,
-                                    state:"PRIMERA VEZ"
-                                },
-                                {
-                                    uid:"02",
-                                    firstPeriod:3.5,
-                                    secondPeriod:3.5,
-                                    finalScore:3.5,
-                                    state:"REPETICION"
-                                }
-                            ]
-                        },
-                        
-                        {
-                            uid:"01",
-                            firstTime: true,
-                            name:"Calculo diferencial",
-                            credits:4,
-                            code:"8965214",
-                            color:"bg-blue",
-                            prerequisites:[],
-                            periods:[
-                                { 
-                                    uid:"01",
-                                    firstPeriod:2.1,
-                                    secondPeriod:1.0,
-                                    finalScore:2.2,
-                                    state:"PRIMERA VEZ"
-                                },
-                                {
-                                    uid:"02",
-                                    firstPeriod:3.5,
-                                    secondPeriod:3.5,
-                                    finalScore:3.5,
-                                    state:"REPETICION"
-                                }
-                            ]
-                        },
-                        {
-                            uid:"01",
-                            firstTime: true,
-                            code:"8963257",
-                            name:"calculo integral",
-                            credits:4,
-                            color:"bg-blue",
-                            prerequisites:[],
-                            periods:[
-                                { 
-                                    uid:"01",
-                                    firstPeriod:2.1,
-                                    secondPeriod:1.0,
-                                    finalScore:2.2,
-                                    state:"PRIMERA VEZ"
-                                },
-                                {
-                                    uid:"02",
-                                    firstPeriod:3.5,
-                                    secondPeriod:3.5,
-                                    finalScore:3.5,
-                                    state:"REPETICION"
-                                }
-                            ]
-                        }  
-                    ]
-
-                },
-                {
-                    uid:"022asdfe233dss",
-                    name:"linea2",
-                    courses:[
-                        {
-                            uid:"02",
-                            firstTime: true,
-                            code:"7852144",
-                            name:"Logica Matematica",
-                            credits:4,
-                            color:"bg-grey",
-                            prerequisites:[],
-                            periods:[
-                                { 
-                                    uid:"01",
-                                    firstPeriod:4.1,
-                                    secondPeriod:4.1,
-                                    finalScore:4.1,
-                                    state:"PRIMERA VEZ"
-                                }
-                            ]
-                        },
-                        
-                        {
-                            uid:"02",
-                            firstTime: true,
-                            code:"8511124",
-                            name:"Algebra lineal",
-                            credits:4,
-                            color:"bg-grey",
-                            prerequisites:[],
-                            periods:[
-                                { 
-                                    uid:"01",
-                                    firstPeriod:4.1,
-                                    secondPeriod:4.1,
-                                    finalScore:4.1,
-                                    state:"PRIMERA VEZ"
-                                }
-                            ]
-                        },
-
-                        {
-                            uid:"02",
-                            firstTime: true,
-                            name:"Matematicas discretas",
-                            code:"963258",
-                            credits:4,
-                            color:"bg-grey",
-                            prerequisites:[],
-                            periods:[
-                                { 
-                                    uid:"01",
-                                    firstPeriod:4.1,
-                                    secondPeriod:4.1,
-                                    finalScore:4.1,
-                                    state:"PRIMERA VEZ"
-                                }
-                            ]
-                        }
-                    ]
-
-                },
-                {
-                    uid:"022asdfe233dss",
-                    name:"linea3",
-                    courses:[
-                        {
-                            uid:"02",
-                            code:"562031",
-                            firstTime: true,
-                            name:"Fundamentos de programacion",
-                            credits:4,
-                            color:"bg-green",
-                            prerequisites:[],
-                            periods:[
-                                { 
-                                    uid:"01",
-                                    firstPeriod:4.1,
-                                    secondPeriod:4.1,
-                                    finalScore:4.1,
-                                    state:"PRIMERA VEZ"
-                                }
-                            ]
-                        },
-                        
-                        {
-                            uid:"02",
-                            code:"585211",
-                            firstTime: true,
-                            name:"Tecnicas de programacion I",
-                            credits:4,
-                            color:"bg-green",
-                            prerequisites:[],
-                            periods:[
-                                { 
-                                    uid:"01",
-                                    firstPeriod:4.1,
-                                    secondPeriod:4.1,
-                                    finalScore:4.1,
-                                    state:"PRIMERA VEZ"
-                                }
-                            ]
-                        },
-
-                        {
-                            uid:"02",
-                            firstTime: true,
-                            code:"741258",
-                            name:"Tecnicas de programacion II",
-                            credits:4,
-                            color:"bg-green",
-                            prerequisites:[],
-                            periods:[
-                                { 
-                                    uid:"01",
-                                    firstPeriod:4.1,
-                                    secondPeriod:4.1,
-                                    finalScore:4.1,
-                                    state:"PRIMERA VEZ"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        } 
-    };
-
-    localStorage.setItem('currentUser',JSON.stringify(userTest));
+function saveOnStorage(key,data){
+    localStorage.setItem(key,JSON.stringify(data));
 }
+
+
 
 
