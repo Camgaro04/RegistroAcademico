@@ -10,28 +10,17 @@
     <script type="text/javascript" src="../js/scriptsRegistro.js"></script>
     <script type="text/javascript" src="../js/scripts.js"></script>
 </head>
-<body onload="selectedCourse()">
+<body onload="loadCourseInformation()">
 
-    <nav class="navbar navbar-expand-lg  navbar-dark bg-primary" id='navBarElement'>
-        <a class="navbar-brand" href="#">Registro academico</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <!-- <ul class="navbar-nav">
-            <li class="nav-item active">
-    
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="historial.html">Historial</a>
-            </li>
-            </ul> -->
-        </div>
-      </nav>
+    <nav class="navbar navbar-expand-xl full-sized navbar-dark bg-navbar"  id='navBarElement'>
+            <a class="navbar-brand" href="#">Registro academico</a>
+            <button type="button" class="btn btn-success">Calculadora</button>
+    </nav>
 
     <div class="div-middle-left text-white" id="bannerLeft">
         <h1 id="principalTitle"></h1>
         <h4 id="creditsNumber">Numero de creditos: </h4>
+        <h5 id="lineNumber">Nombre de linea: </h4>
     </div>
     <div class="div-middle-right">
         <h2>Información de la materia</h2>
@@ -41,7 +30,15 @@
             <tbody>
             </tbody>
           </table>
-
+        <hr>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Cargar horas a la materia</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cargue sus horas">
+                <small id="emailHelp" class="form-text text-muted">Solo valores enteros</small>
+            </div>
+            <button type="submit"  class="btn btn-primary" id="buttonCargar">Cargar</button>
+        </form>
         <hr>
         <h3>Cantidad de horas invertidas</h3>
         <div class="progress">

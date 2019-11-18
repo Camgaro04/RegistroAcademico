@@ -14,40 +14,236 @@
     <title>Document</title>
 </head>
 <body onload="loadInformation()">
-  <nav class="navbar navbar-expand-lg  navbar-dark bg-navbar">
-    <a class="navbar-brand" href="#">Registro academico</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <!-- <ul class="navbar-nav">
-        <li class="nav-item active">
+    <nav class="navbar navbar-expand-xl full-sized navbar-dark bg-navbar">
+        <a class="navbar-brand" href="#">Registro academico</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Perfil</a>
+              </li>
+              <li class="nav-item">
+                  <button type="button" class="btn btn-success" onclick="showCalculator()">Calculadora</button>
+              </li>
+            </ul>
+          </div>
+    </nav>
 
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="historial.html">Historial</a>
-        </li>
-        </ul> -->
-    </div>
-  </nav>
-  
-  <table class="table table-borderless" id="principalTable">
-        <thead>
-          <tr>
-            <th scope="col">I Semestre</th>
-            <th scope="col">II Semestre</th>
-            <th scope="col">III Semestre</th>
-            <th scope="col">IV Semestre</th>
-            <th scope="col">V Semestre</th>
-            <th scope="col">VI Semestre</th>
-            <th scope="col">VII Semestre</th>
-            <th scope="col">VIII Semestre</th>
-            <th scope="col">IX semestre</th>
-          </tr>
-        </thead>
-        <tbody> 
-        </tbody>
-      </table>
+  <div class="container-fluid">
+      <div class="table-responsive">
+          <table class="table table-sm table-hover table-bordered" id="principalTable">
+              <thead>
+                <tr>
+                  <th>Linea</th>
+                  <th scope="col">I Semestre</th>
+                  <th scope="col">II Semestre</th>
+                  <th scope="col">III Semestre</th>
+                  <th scope="col">IV Semestre</th>
+                  <th scope="col">V Semestre</th>
+                  <th scope="col">VI Semestre</th>
+                  <th scope="col">VII Semestre</th>
+                  <th scope="col">VIII Semestre</th>
+                  <th scope="col">IX semestre</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td align="center"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                          <td></td>
+                          <td></td>
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                          </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                          </tr>
+              <tr>
+                  <td></td>
+                  <td></td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr> 
+              </tbody>
+          </table>
+      </div>
+    
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Calculadora</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Nota del 40%</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite su nota">
+                        <small id="emailHelp" class="form-text text-muted">Ejemplo: 3.5</small>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Nota del 60%</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Digite su nota">
+                        <small id="emailHelp" class="form-text text-muted">Ejemplo: 3.5</small>
+                      </div>
+                      <div class="form-group">
+                          <label for="exampleInputPassword1">Resultado</label>
+                          <input class="form-control" type="text" placeholder="Resultado" readonly>
+                        </div>
+                    </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-success">Calcular</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+              </div>
+              </div>
+          </div>
+      </div>
+  </div>
     <script src="../js/schedule.utils.library.js"></script>
     <script src="../js/schedule.library.js"></script>
     <script type="text/javascript" src="../js/jquery.js"></script>
