@@ -1,4 +1,4 @@
-
+var currentHours = 0;
 function loginRegistro(){
 
     var email = $('#loginname').val();
@@ -35,8 +35,8 @@ function loadInformation(){
     })
 
     var userInformation = JSON.parse(localStorage.getItem('userinformation'));
-    console.log(userInformation);
     var url = 'http://localhost:3000/api/Students/'+userInformation.student.id+'/career';
+    printProfile(userInformation);
 
     $.get(url).done(function(data,status){
         saveOnStorage('courses',data);
@@ -44,6 +44,13 @@ function loadInformation(){
     }).fail(function(data,status){
         console.log(data);
     });
+}
+
+function printProfile(userData){
+    $('#userName').append(userData.student.displayName);
+    $('#career').append(userData.student.career);
+    $('#code').append('Codigo: '+userData.student.code);
+    $('#currentSemester').append('Semestre actual: '+userData.student.semester);
 }
 
 
@@ -57,6 +64,9 @@ function printDashBoard(data){
                 currentItem = data.career.lines[i].courses[j];
                 var divPrincipal = '<div id="'+currentItem.name+'" ><div class="card text-white '+data.career.lines[i].color+' mb-3" style="max-width: 18rem;" ><div class="card-header" id="'+currentItem.name+'">'+currentItem.name+'</div></div>'
                 var dot = ' <span class="dot bg-red"></span>';
+                if(currentItem.status){
+                    dot = ' <span class="dot bg-green"></span>';
+                }
                 table.rows[i+1].cells[currentItem.semester].innerHTML =  dot+divPrincipal; 
             }     
         }
@@ -69,7 +79,8 @@ function printCourseInformation(data){
     content = '';
     var principalResultsTables = $("#resultsTable").find('tbody');
     if(data != null){
-        console.log(data)
+        this.currentHours = data.course.userHours;
+        console.log(currentHours);
         for(var i =0;i<data.course.score.length;i++){
             currentElement = data.course.score[i];
             content += '<tr  scope="row"> ';
@@ -80,6 +91,7 @@ function printCourseInformation(data){
             content += '<td> '+currentElement.status +' </td>';
             content += '</tr>';
         }
+
         var courseName = data.course.name;
         var lineInformation = findSelecteCourse(courseName);
         principalResultsTables.append(content);
@@ -90,18 +102,23 @@ function printCourseInformation(data){
         $('#navBarElement').addClass(color);
         $('#progressBarElement').addClass(color);
         $('#lineNumber').append(lineInformation.name)
+        $('#buttonCalculadora').addClass(color);
 
         if(data.course.prerequisites.length == 0){
             $('#prerequisites').append('No Presenta prerequisitos');    
         }
+
+        setupProgressBar()
     }
 
 }
 
 
 function loadCourseInformation(){
+    
     var informationUser = JSON.parse(localStorage.getItem('userinformation'));
     var selectedCourse = localStorage.getItem("selecteCourse");
+    printProfile(informationUser);
     if(informationUser != null){    
         var url = 'http://localhost:3000/api/Students/'+informationUser.student.id+'/career/'+selectedCourse;
         $.get(url).done(function(data,status){
@@ -133,6 +150,53 @@ function saveOnStorage(key,data){
 }
 
 function showCalculator(){
-    $('#exampleModal').modal('toggle');
+    $('#exampleModal').modal('toggle');   
 }
+
+function calculate(){
+    var firstNote = $('#firstNote').val();
+    var secondNote = $('#secondNote').val();
+
+    console.log(firstNote + secondNote);
+}
+
+function showProfile(){
+    $('#studentProfile').modal('toggle');
+}
+
+function saveHours(){
+    hours = $("#hours").val(); 
+    var informationUser = JSON.parse(localStorage.getItem('userinformation'));
+    var selectedCourse = localStorage.getItem("selecteCourse");
+    var url = 'http://localhost:3000/api/Students/'+informationUser.student.id+'/career/'+selectedCourse;
+    this.currentHours = this.currentHours+ parseInt(hours);
+    var dataValues = JSON.stringify({userHours:parseInt(this.currentHours)})
+
+    $.ajax({
+        url: url,
+        method: 'PUT',
+        data:dataValues,
+        contentType: 'application/json',
+        success: function(result) {
+            this.currentHours = result.course.userHours;
+            console.log(this.currentHours);
+            setupProgressBar();
+        },
+        error: function(request,msg,error) {
+            console.log(error);
+        }
+    });
+}
+
+function setupProgressBar(){
+    $('.progress-bar').css('width', this.currentHours+'%').attr('aria-valuenow', this.currentHours);
+}
+
+
+function backPressed(){
+    window.onpopstate = function() {
+        $(location).attr('href','schedule.html');
+     }; history.pushState({}, '');
+}
+
 
