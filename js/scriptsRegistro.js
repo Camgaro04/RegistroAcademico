@@ -1,19 +1,37 @@
 var currentHours = 0;
+var rhours = 0;
 function loginRegistro(){
 
     var email = $('#loginname').val();
     var password = $('#password').val();
-    var url = 'http://localhost:3000/api/Students/sign-in'
-    var data = {email:email,password:password};
+
     $('#errorBody').empty();
-    $.post(url, data)
-    .done(function( data, status ) { 
-        saveOnStorage('userinformation',data);
-        $(location).attr('href','html/schedule.html');
-    }).fail(function(data){    
-        $('#errorBody').append(data.responseJSON.error.message);
+    if(email != ''){
+        if(password != ''){
+            var url = 'http://localhost:3000/api/Students/sign-in'
+            var data = {email:email,password:password};
+            $('#errorBody').empty();
+            $.post(url, data)
+            .done(function( data, status ) { 
+                saveOnStorage('userinformation',data);
+                $(location).attr('href','html/schedule.html');
+            }).fail(function(data){    
+                $('#errorBody').append(data.responseJSON.error.message);
+                $('#exampleModal').modal('toggle');
+            });
+        }else{
+            $('#errorBody').append('El campo password es obligatorio');
+            $('#exampleModal').modal('toggle');
+           
+        }
+    }else{
+        $('#errorBody').append('El campo email es obligatorio');
         $('#exampleModal').modal('toggle');
-    });
+        
+    }
+
+   
+    
 }
 
 function selectElement(courseSelected){
@@ -107,8 +125,8 @@ function printCourseInformation(data){
         if(data.course.prerequisites.length == 0){
             $('#prerequisites').append('No Presenta prerequisitos');    
         }
-
-        setupProgressBar(data.course.recommendedHours)
+        this.rhours = data.course.recommendedHours;
+        setupProgressBar(this.rhours)
     }
 
 }
@@ -171,23 +189,28 @@ function saveHours(){
     this.currentHours = this.currentHours+ parseInt(hours);
     var dataValues = JSON.stringify({userHours:parseInt(this.currentHours)})
 
-    $.ajax({
-        url: url,
-        method: 'PUT',
-        data:dataValues,
-        contentType: 'application/json',
-        success: function(result) {
-            this.currentHours = result.course.userHours;
-            setupProgressBar(result.course.recommendedHours);
-        },
-        error: function(request,msg,error) {
-            console.log(error);
-        }
-    });
+    console.log(this.currentHours)
+    if(this.rhours >= this.currentHours){
+        $.ajax({
+            url: url,
+            method: 'PUT',
+            data:dataValues,
+            contentType: 'application/json',
+            success: function(result) {
+                this.currentHours = result.course.userHours;
+                this.rhours = result.course.recommendedHours
+                setupProgressBar(this.rhours);
+            },
+            error: function(request,msg,error) {
+                console.log(error);
+            }
+        });
+    }
 }
 
 function setupProgressBar(recommendedHours){
-    currentProgress = (this.currentHours*100)/recommendedHours;
+    console.log(recommendedHours);
+    currentProgress = (this.currentHours/recommendedHours)*100;
     $('.progress-bar').css('width', currentProgress+'%').attr('aria-valuenow', this.currentHours);
 }
 
