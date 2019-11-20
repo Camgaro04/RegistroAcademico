@@ -190,7 +190,6 @@ function saveHours(){
     var dataValues = JSON.stringify({userHours:parseInt(this.currentHours)})
 
     console.log(this.currentHours)
-    if(this.rhours >= this.currentHours){
         $.ajax({
             url: url,
             method: 'PUT',
@@ -205,7 +204,6 @@ function saveHours(){
                 console.log(error);
             }
         });
-    }
 }
 
 function setupProgressBar(recommendedHours){
