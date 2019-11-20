@@ -124,6 +124,12 @@ function printCourseInformation(data){
 
         if(data.course.prerequisites.length == 0){
             $('#prerequisites').append('No Presenta prerequisitos');    
+        }else{
+            var prerequisitesString = '';
+            for (var i = 0 ; i<data.course.prerequisites.length;i++){
+                prerequisitesString += data.course.prerequisites[i];
+            }
+            $('#prerequisites').append(prerequisitesString);    
         }
         this.rhours = data.course.recommendedHours;
         setupProgressBar(this.rhours)
@@ -219,4 +225,8 @@ function backPressed(){
      }; history.pushState({}, '');
 }
 
+function logout(){
+    localStorage.clear();
+    window.location.replace('../index.html');
+}
 
