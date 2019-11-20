@@ -123,13 +123,10 @@ function printCourseInformation(data){
         $('#buttonCalculadora').addClass(color);
 
         if(data.course.prerequisites.length == 0){
-            $('#prerequisites').append('No Presenta prerequisitos');    
+            $('#prerequisites').append('No Presenta prerequisitos');
         }else{
-            var prerequisitesString = '';
-            for (var i = 0 ; i<data.course.prerequisites.length;i++){
-                prerequisitesString += data.course.prerequisites[i];
-            }
-            $('#prerequisites').append(prerequisitesString);    
+            var prerequisitesString = data.course.prerequisites.join(', ');
+            $('#prerequisites').append(prerequisitesString);
         }
         this.rhours = data.course.recommendedHours;
         setupProgressBar(this.rhours)
