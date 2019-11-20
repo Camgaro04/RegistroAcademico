@@ -156,8 +156,7 @@ function showCalculator(){
 function calculate(){
     var firstNote = $('#firstNote').val();
     var secondNote = $('#secondNote').val();
-
-    console.log(firstNote + secondNote);
+    $("#result").val(firstNote *0.4 + secondNote*0.6)
 }
 
 function showProfile(){
