@@ -80,7 +80,7 @@ function printCourseInformation(data){
     var principalResultsTables = $("#resultsTable").find('tbody');
     if(data != null){
         this.currentHours = data.course.userHours;
-        console.log(currentHours);
+        console.log(data.course.recommendedHours);
         for(var i =0;i<data.course.score.length;i++){
             currentElement = data.course.score[i];
             content += '<tr  scope="row"> ';
@@ -108,7 +108,7 @@ function printCourseInformation(data){
             $('#prerequisites').append('No Presenta prerequisitos');    
         }
 
-        setupProgressBar()
+        setupProgressBar(data.course.recommendedHours)
     }
 
 }
@@ -178,8 +178,7 @@ function saveHours(){
         contentType: 'application/json',
         success: function(result) {
             this.currentHours = result.course.userHours;
-            console.log(this.currentHours);
-            setupProgressBar();
+            setupProgressBar(result.course.recommendedHours);
         },
         error: function(request,msg,error) {
             console.log(error);
@@ -187,8 +186,9 @@ function saveHours(){
     });
 }
 
-function setupProgressBar(){
-    $('.progress-bar').css('width', this.currentHours+'%').attr('aria-valuenow', this.currentHours);
+function setupProgressBar(recommendedHours){
+    currentProgress = (this.currentHours*100)/recommendedHours;
+    $('.progress-bar').css('width', currentProgress+'%').attr('aria-valuenow', this.currentHours);
 }
 
 
