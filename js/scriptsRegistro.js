@@ -186,7 +186,7 @@ function saveHours(){
     var informationUser = JSON.parse(localStorage.getItem('userinformation'));
     var selectedCourse = localStorage.getItem("selecteCourse");
     var url = 'http://localhost:3000/api/Students/'+informationUser.student.id+'/career/'+selectedCourse;
-    this.currentHours = this.currentHours+ parseInt(hours);
+    this.currentHours = parseInt(hours);
     var dataValues = JSON.stringify({userHours:parseInt(this.currentHours)})
 
     console.log(this.currentHours)
